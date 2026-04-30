@@ -1,5 +1,6 @@
 import type { Task } from './types'
 
+// DB連携前でも一覧画面を実装できるよう、タスク機能の仮データを分離しておく。
 export const mockTasks: Task[] = [
   {
     id: 'task-1',
