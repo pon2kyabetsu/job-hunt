@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 function LoginPage() {
   const navigate = useNavigate()
 
+  // 認証処理は未実装のため、現時点ではログイン後画面への遷移だけを確認する。
   const goToDashboard = () => {
     navigate('/dashboard')
   }

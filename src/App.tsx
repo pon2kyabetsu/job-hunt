@@ -13,6 +13,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* 認証ガード未実装の間は、アプリ起動時にダッシュボードへ直接遷移させる。 */}
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
         <Route path="/login" element={<LoginPage />} />
         <Route element={<AppLayout />}>
