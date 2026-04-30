@@ -117,6 +117,81 @@
   margin: 0 0 10px;
 }
 
+.task-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.task-card {
+  align-items: center;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  padding: 20px 22px;
+}
+
+.task-card-main {
+  min-width: 0;
+}
+
+.task-category {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 800;
+  margin: 0 0 8px;
+}
+
+.task-card h2 {
+  color: var(--text-strong);
+  font-size: 20px;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.task-meta {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(3, minmax(80px, auto));
+  margin: 0;
+}
+
+.task-meta div {
+  min-width: 0;
+}
+
+.task-meta dt {
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.task-meta dd {
+  color: var(--text-strong);
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.empty-state {
+  background: var(--panel);
+  border: 1px dashed var(--border-strong);
+  border-radius: 8px;
+  margin-top: 28px;
+  padding: 28px;
+  text-align: center;
+}
+
+.empty-state p {
+  color: var(--text-muted);
+  margin: 0;
+}
+
 .login-page,
 .not-found-page {
   align-items: center;
@@ -258,6 +333,11 @@
 
   .dashboard-grid,
   .login-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .task-card,
+  .task-meta {
     grid-template-columns: 1fr;
   }
 
