@@ -1,73 +1,146 @@
-# React + TypeScript + Vite
+# Career Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Career Manager は、転職活動と学習タスクをまとめて管理するための Web アプリです。
 
-Currently, two official plugins are available:
+応募企業、選考状況、日々の学習タスク、週次の振り返りを一元管理し、転職活動中に「次に何をするべきか」を把握しやすくすることを目的にしています。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 作成目的
 
-## React Compiler
+転職活動では、応募企業の進捗、面接準備、学習内容、振り返りメモが別々の場所に散らばりやすくなります。
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+このアプリでは、それらを 1 つの画面構成の中で整理し、学習と応募活動を継続しやすくすることを目指しています。
 
-## Expanding the ESLint configuration
+## 使用技術
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React
+- TypeScript
+- Vite
+- React Router DOM
+- CSS
+- ESLint
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 現在実装済みの機能
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- ログイン画面
+- ログインボタン / デモログインボタンからダッシュボードへの遷移
+- ログイン後の共通レイアウト
+- ヘッダー
+- サイドバー
+- ダッシュボード画面
+- タスク管理画面
+- 応募企業管理画面
+- 振り返り画面
+- 設定画面
+- Not Found ページ
+- レスポンシブ対応の土台
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 現時点で未実装の機能
+
+- 実際の認証処理
+- 認証ガード
+- DB 連携
+- API 通信
+- フォーム入力内容の保存
+- タスク / 応募企業 / 振り返りデータの CRUD
+- 本番用デプロイ設定
+
+## 画面構成
+
+| パス | 画面 | 内容 |
+| --- | --- | --- |
+| `/` | リダイレクト | `/dashboard` に遷移 |
+| `/login` | ログイン画面 | メールアドレス、パスワード、ログインボタン、デモログインボタン |
+| `/dashboard` | ダッシュボード | 今日やること、応募状況、直近のアクション |
+| `/tasks` | タスク管理 | 学習タスクや転職活動タスクを管理する想定 |
+| `/companies` | 応募企業管理 | 応募企業や選考ステータスを管理する想定 |
+| `/reflections` | 振り返り | 週次振り返りや学習ログを管理する想定 |
+| `/settings` | 設定 | プロフィールやログアウトを置く想定 |
+| `*` | Not Found | 存在しない URL の表示 |
+
+## ディレクトリ構成
+
+```text
+src/
+  components/
+    Header.tsx
+    Sidebar.tsx
+  layouts/
+    AppLayout.tsx
+  pages/
+    LoginPage.tsx
+    DashboardPage.tsx
+    TasksPage.tsx
+    CompaniesPage.tsx
+    ReflectionsPage.tsx
+    SettingsPage.tsx
+    NotFoundPage.tsx
+  App.tsx
+  App.css
+  index.css
+  main.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## セットアップ
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+依存パッケージをインストールします。
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+開発サーバーを起動します。
+
+```bash
+npm run dev
+```
+
+起動後、ブラウザで表示されたローカル URL にアクセスしてください。
+
+## 開発用コマンド
+
+```bash
+npm run dev
+```
+
+開発サーバーを起動します。
+
+```bash
+npm run lint
+```
+
+ESLint でコードをチェックします。
+
+```bash
+npm run build
+```
+
+TypeScript の型チェックと本番用ビルドを実行します。
+
+## 動作確認
+
+この README 更新時点では、以下のコマンドが通ることを確認しています。
+
+```bash
+npm run lint
+npm run build
+```
+
+## 今後実装予定
+
+- 不要な初期アセットの整理
+- README の継続的な更新
+- タスク一覧画面の作成
+- タスク作成 / 編集 / 削除
+- 応募企業一覧画面の作成
+- 応募企業詳細画面の作成
+- 選考ステータス管理
+- 週次振り返り / 学習ログ管理
+- 認証状態の管理
+- DB / API 連携
+- レスポンシブデザインの調整
+
+## 開発メモ
+
+現在は、画面遷移と共通レイアウトを確認できる段階です。
+
+認証処理や DB 連携はまだ実装せず、まずは各主要画面へ移動できる構成を優先しています。
