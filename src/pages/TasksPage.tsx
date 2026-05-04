@@ -1,8 +1,28 @@
+import { useState } from 'react'
 import { TaskForm } from '../features/tasks/components/TaskForm'
 import { TaskCard } from '../features/tasks/components/TaskCard'
 import { mockTasks } from '../features/tasks/mockTasks'
+import type { Task, TaskFormValues } from '../features/tasks/types'
 
 function TasksPage() {
+  const [tasks, setTasks] = useState<Task[]>(mockTasks)
+
+  function handleAddTask(values: TaskFormValues) {
+    const now = new Date().toISOString()
+    const newTask: Task = {
+      id: crypto.randomUUID(),
+      title: values.title,
+      status: 'todo',
+      priority: values.priority,
+      dueDate: values.dueDate,
+      category: values.category,
+      createdAt: now,
+      updatedAt: now,
+    }
+
+    setTasks((currentTasks) => [...currentTasks, newTask])
+  }
+
   return (
     <section className="page-section">
       <div className="page-heading">
@@ -13,11 +33,11 @@ function TasksPage() {
         </p>
       </div>
 
-      <TaskForm />
+      <TaskForm onAddTask={handleAddTask} />
 
-      {mockTasks.length > 0 ? (
+      {tasks.length > 0 ? (
         <div className="task-list" aria-label="タスク一覧">
-          {mockTasks.map((task) => (
+          {tasks.map((task) => (
             <TaskCard key={task.id} task={task} />
           ))}
         </div>

@@ -2,7 +2,7 @@ import type { FormEvent } from 'react'
 import { useState } from 'react'
 
 import { taskCategoryLabels, taskPriorityLabels } from '../taskLabels'
-import type { TaskCategory, TaskPriority } from '../types'
+import type { TaskCategory, TaskFormValues, TaskPriority } from '../types'
 
 const taskPriorityOptions: TaskPriority[] = ['high', 'medium', 'low']
 
@@ -14,7 +14,11 @@ const taskCategoryOptions: TaskCategory[] = [
   'document',
 ]
 
-export function TaskForm() {
+type TaskFormProps = {
+  onAddTask: (values: TaskFormValues) => void
+}
+
+export function TaskForm({ onAddTask }: TaskFormProps) {
   const [title, setTitle] = useState('')
   const [priority, setPriority] = useState<TaskPriority>('medium')
   const [dueDate, setDueDate] = useState('')
@@ -22,7 +26,25 @@ export function TaskForm() {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    // 追加処理は次のIssueで実装するため、今回はフォーム入力だけを確認できる状態にする。
+
+    const trimmedTitle = title.trim()
+
+    if (trimmedTitle === '') {
+      setTitle('')
+      return
+    }
+
+    onAddTask({
+      title: trimmedTitle,
+      priority,
+      dueDate: dueDate || null,
+      category,
+    })
+
+    setTitle('')
+    setPriority('medium')
+    setDueDate('')
+    setCategory('learning')
   }
 
   return (
