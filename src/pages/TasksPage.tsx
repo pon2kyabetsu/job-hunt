@@ -1,3 +1,4 @@
+import { TaskForm } from '../features/tasks/components/TaskForm'
 import { TaskCard } from '../features/tasks/components/TaskCard'
 import { mockTasks } from '../features/tasks/mockTasks'
 
@@ -11,6 +12,8 @@ function TasksPage() {
           学習タスクや転職活動タスクを登録し、進捗を管理する画面になる予定です。
         </p>
       </div>
+
+      <TaskForm />
 
       {mockTasks.length > 0 ? (
         <div className="task-list" aria-label="タスク一覧">
