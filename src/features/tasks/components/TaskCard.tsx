@@ -6,10 +6,11 @@ import {
 import type { Task } from '../types'
 
 type TaskCardProps = {
+  onDeleteTask: (taskId: string) => void
   task: Task
 }
 
-export function TaskCard({ task }: TaskCardProps) {
+export function TaskCard({ onDeleteTask, task }: TaskCardProps) {
   return (
     <article className="task-card">
       <div className="task-card-main">
@@ -31,6 +32,16 @@ export function TaskCard({ task }: TaskCardProps) {
           <dd>{task.dueDate ?? '未設定'}</dd>
         </div>
       </dl>
+
+      <div className="task-card-actions">
+        <button
+          className="secondary-button task-delete-button"
+          type="button"
+          onClick={() => onDeleteTask(task.id)}
+        >
+          削除
+        </button>
+      </div>
     </article>
   )
 }

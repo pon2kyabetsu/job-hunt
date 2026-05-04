@@ -23,6 +23,12 @@ function TasksPage() {
     setTasks((currentTasks) => [...currentTasks, newTask])
   }
 
+  function handleDeleteTask(taskId: string) {
+    setTasks((currentTasks) =>
+      currentTasks.filter((task) => task.id !== taskId),
+    )
+  }
+
   return (
     <section className="page-section">
       <div className="page-heading">
@@ -38,7 +44,11 @@ function TasksPage() {
       {tasks.length > 0 ? (
         <div className="task-list" aria-label="タスク一覧">
           {tasks.map((task) => (
-            <TaskCard key={task.id} task={task} />
+            <TaskCard
+              key={task.id}
+              task={task}
+              onDeleteTask={handleDeleteTask}
+            />
           ))}
         </div>
       ) : (

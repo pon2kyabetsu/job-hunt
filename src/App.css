@@ -196,7 +196,7 @@
   box-shadow: var(--shadow);
   display: grid;
   gap: 18px;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto auto;
   padding: 20px 22px;
 }
 
@@ -241,6 +241,15 @@
   font-size: 14px;
   font-weight: 700;
   margin: 0;
+}
+
+.task-card-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.task-delete-button {
+  min-width: 72px;
 }
 
 .empty-state {
