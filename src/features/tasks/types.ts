@@ -20,3 +20,11 @@ export type Task = {
   createdAt: string
   updatedAt: string
 }
+
+// フォームでは、idや作成日時などの自動生成する項目を扱わず、ユーザーが入力する項目だけを渡す。
+export type TaskFormValues = {
+  title: string
+  priority: TaskPriority
+  dueDate: string | null
+  category: TaskCategory
+}
